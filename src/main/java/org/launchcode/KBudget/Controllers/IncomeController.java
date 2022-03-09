@@ -8,9 +8,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class IncomeController {
 
     @GetMapping("income")
-    @ResponseBody
     public String Income() {
-        return "Is it working?";
+        return "income/index";
     }
 
 }

@@ -1,6 +1,7 @@
 package org.launchcode.KBudget.Controllers;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 
@@ -8,8 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class MainController {
 
     @GetMapping("")
-    public String showBudgetPage(){
-        System.out.println("main controller");
+    public String showBudgetPage(Model model){
+        model.addAttribute("title", "Welcome to KBudget!");
         return "index";
     }
 }

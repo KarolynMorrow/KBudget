@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https:www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8">
     <title>Welcome to KBudget</title>
 </head>
 <body>
 <div align="center">
-    <h1>My Budget</h1>
-    <h2><a href="/income">+ Income</a></h2>
-    <h2><a href="/bills">+ Bill</a></h2>
+    <h1 th:text="${title}"></h1>
+    <h2><a href="/income">View Income</a></h2>
+    <h2><a href="/bills">View Bills</a></h2>
 </div>
 </body>
 </html>

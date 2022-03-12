@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @Controller
 @RequestMapping("bills")
 public class BillsController {
@@ -25,16 +27,19 @@ public class BillsController {
     //lives at /bills/add
     @GetMapping("add")
     public String displayBillForm(Model model){
-        //model.addAttribute(new Bill());
+        model.addAttribute("title", "Add bill");
+        model.addAttribute(new Bill());
         return "bills/add";
     }
 
-//    @PostMapping("add")
-//    public String processAddBillForm(@ModelAttribute Bill newBill, Errors errors, Model model) {
-//        if (errors.hasErrors()) {
-//            return "bills/add";
-//        }
-//        billsRepository.save(newBill);
-//        return "redirect:";
-//    }
+    //lives at /bills/add
+    @PostMapping("add")
+    public String processAddBillForm(@ModelAttribute @Valid Bill newBill, Errors errors, Model model) {
+        if (errors.hasErrors()) {
+            model.addAttribute("errorMsg","Incorrect input");
+            return "bills/add";
+        }
+        billsRepository.save(newBill);
+        return "redirect:/bills";
+    }
 }

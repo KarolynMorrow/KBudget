@@ -4,32 +4,39 @@
     <meta charset="UTF-8"/>
     <title>Add Bill</title>
 </head>
-<body>
-<h1>Add Your Bill</h1>
-<form method="post" action="/bills/add">
-    <input type="text" name="billName">
-    <input type="submit" value="Add Bill">
+<body class="container">
+<h1 th:text="${title}"></h1>
 
-</form>
+<p class="error" th:text="${errorMsg}"></p>
+<!--<form method="post" action="/bills/add">-->
+<!--    <input type="text" name="billName">-->
+<!--    <input type="submit" value="Add Bill">-->
 
-<!--<form method="post">-->
-
-<!--    <div class="form-group" action="/bills/add">-->
-<!--        <label th:for="billName">Bill name:</label>-->
-<!--        <input type="text" th:field="${billName}" placeholder="string" />-->
-<!--    </div>-->
-
-<!--    <div class="form-group">-->
-<!--        <label>Due date:</label>-->
-<!--        <input type="date" th:field="${dueDate}" placeholder="MM-dd-yyyy" />-->
-<!--    </div>-->
-
-<!--    <div class="form-group">-->
-<!--        <label>Bill amount:</label>-->
-<!--        <input type="number" th:field="${billAmount}" placeholder="float" />-->
-<!--    </div>-->
-
-<!--    <input type="submit" value="Add Bill"/>-->
+<!--    -->
 <!--</form>-->
+
+<form method="post" action="/bills/add">
+
+    <div class="form-group">
+        <label>Bill name:
+        <input type="text" th:field="${bill.billName}" placeholder="name" />
+        </label>
+
+    </div>
+
+    <div class="form-group">
+        <label>Due date:
+        <input type="date" th:field="${bill.dueDate}" placeholder="MM-dd-yyyy" />
+        </label>
+    </div>
+
+    <div class="form-group">
+        <label>Bill amount:
+        <input type="number" th:field="${bill.billAmount}" placeholder="Amount" />
+        </label>
+    </div>
+
+    <input type="submit" value="Add Bill"/>
+</form>
 </body>
 </html>

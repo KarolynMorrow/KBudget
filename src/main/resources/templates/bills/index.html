@@ -8,6 +8,12 @@
 <div align="center">
     <h1 th:text="${title}"></h1>
     <h2><a href="/bills/add">+ Bill</a></h2>
+    <p th:unless="${bills} and ${bills.size()}">No Bills Have been Added!</p>
+    <ul>
+        <th:block th:each="bill : ${bills}">
+            <li th:text="${bill}"></li>
+        </th:block>
+    </ul>
 </div>
 </body>
 </html>

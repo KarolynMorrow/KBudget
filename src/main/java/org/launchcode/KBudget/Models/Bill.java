@@ -17,6 +17,7 @@ public class Bill {
     @DateTimeFormat(pattern="MM-dd-yyyy")
     private Date dueDate;
 
+
     private String billName;
     private Float billAmount;
     private Float billTotal;

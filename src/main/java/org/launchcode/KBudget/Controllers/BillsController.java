@@ -36,10 +36,10 @@ public class BillsController {
     @PostMapping("add")
     public String processAddBillForm(@ModelAttribute @Valid Bill newBill, Errors errors, Model model) {
         if (errors.hasErrors()) {
-            model.addAttribute("errorMsg","Incorrect input");
+           model.addAttribute("errorMsg","Incorrect input");
             return "bills/add";
         }
         billsRepository.save(newBill);
-        return "redirect:/bills";
+        return "redirect:";
     }
 }

@@ -2,9 +2,14 @@ package org.launchcode.KBudget.Models;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.FutureOrPresent;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -14,19 +19,31 @@ public class Bill {
     @GeneratedValue
     private int id;
 
-    @DateTimeFormat(pattern="MM-dd-yyyy")
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    @Column(name="due_date")
+    @FutureOrPresent
+    @NotNull
     private Date dueDate;
 
 
+    @NotEmpty(message = "Cannot be empty")
+    @Column(name= "bill_name")
     private String billName;
+
+
+    @Column(name="bill_amount")
+    @DecimalMin("0.05")
+    //@NotEmpty(message = "Need bill amount")
     private Float billAmount;
-    private Float billTotal;
+
+//    @Column(name="bill_total")
+//    private Float billTotal;
 
     public Bill(String billName, Date dueDate, Float billAmount, Float billTotal) {
         this.billName = billName;
         this.dueDate = dueDate;
         this.billAmount = billAmount;
-        this.billTotal = billTotal;
+//        this.billTotal = billTotal;
     }
 
     public Bill(){
@@ -61,11 +78,11 @@ public class Bill {
         this.billAmount = billAmount;
     }
 
-    public Float getBillTotal() {
-        return billTotal;
-    }
-
-    public void setBillTotal(Float billTotal) {
-        this.billTotal = billTotal;
-    }
+//    public Float getBillTotal() {
+//        return billTotal;
+//    }
+//
+//    public void setBillTotal(Float billTotal) {
+//        this.billTotal = billTotal;
+//    }
 }

@@ -20,13 +20,13 @@
 
     <div class="form-group">
         <label>Pay date:
-            <input type="date" th:field="${income.payDate}" placeholder="MM-dd-yyyy" />
+            <input type="date" th:field="${income.payDate}" placeholder="yyyy-MM-dd" />
         </label>
     </div>
 
     <div class="form-group">
         <label>Pay amount:
-            <input type="number" th:field="${income.payAmount}" placeholder="Amount" />
+            <input type="number" step="any" th:field="${income.payAmount}" placeholder="Amount" />
         </label>
     </div>
 

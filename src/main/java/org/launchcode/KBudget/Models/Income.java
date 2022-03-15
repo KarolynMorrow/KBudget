@@ -1,8 +1,16 @@
 package org.launchcode.KBudget.Models;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.FutureOrPresent;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 @Entity
 public class Income {
@@ -10,17 +18,26 @@ public class Income {
     @GeneratedValue
     private int id;
 
+    @Column(name="pay_amount")
+    @DecimalMin(value="0.05")
     private Float payAmount;
+
+    @NotEmpty
+    @Column(name="name")
     private String name;
-    private String payDate;
-    private Float incomeTotal;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Column(name="pay_date")
+    @NotNull
+    private Date payDate;
 
 
-    public Income(Float payAmount, String name, String payDate, Float incomeTotal) {
+
+    public Income(Float payAmount, String name, Date payDate) {
         this.payAmount = payAmount;
         this.name = name;
         this.payDate = payDate;
-        this.incomeTotal = incomeTotal;
+
     }
     public Income(){
 
@@ -46,19 +63,12 @@ public class Income {
         this.name = name;
     }
 
-    public String getPayDate() {
+    public Date getPayDate() {
         return payDate;
     }
 
-    public void setPayDate(String payDate) {
+    public void setPayDate(Date payDate) {
         this.payDate = payDate;
     }
 
-    public Float getIncomeTotal() {
-        return incomeTotal;
-    }
-
-    public void setIncomeTotal(Float incomeTotal) {
-        this.incomeTotal = incomeTotal;
-    }
 }

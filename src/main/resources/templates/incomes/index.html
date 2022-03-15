@@ -1,19 +1,23 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https:www.thymeleaf.org/">
+<html lang="en" xmlns:th="https:www.thymeleaf.org/" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8"/>
     <title>Add income</title>
 </head>
 <body>
+
+<p th:unless="${income} and ${income.size()}">No Income Added!</p>
+
 <div align="center">
     <h1 th:text="${title}"></h1>
-    <h2><a href="/incomes/add">+ Income</a></h2>
-    <p th:unless="${incomes} and ${incomes.size()}">No Income Available!</p>
+
     <ul>
-        <th:block th:each="income : ${incomes}">
-            <li th:text="${income}"></li>
-        </th:block>
+        <li th:each="income : ${incomes}">
+            <li th:text="${incomes}"></li>
+        </li>
     </ul>
+
+    <h2><a href="/incomes/add">+ Income</a></h2>
 </div>
 
 </body>

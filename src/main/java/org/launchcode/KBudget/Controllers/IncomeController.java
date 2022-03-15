@@ -22,12 +22,12 @@ public class IncomeController {
     @GetMapping("")
     public String index(Model model){
         model.addAttribute("title", "My Incomes");
-        model.addAttribute("bill", incomeRepository.findAll());
+        model.addAttribute("Income", incomeRepository.findAll());
         return "incomes/index";
     }
     //lives at /incomes/add
     @GetMapping("add")
-    public String displayBillForm(Model model){
+    public String displayIncomeForm(Model model){
         model.addAttribute("title", "Add Income");
         model.addAttribute(new Income());
         return "incomes/add";
@@ -35,12 +35,12 @@ public class IncomeController {
 
     //lives at /incomes/add
     @PostMapping("add")
-    public String processAddBillForm(@ModelAttribute @Valid Income newIncome, Errors errors, Model model) {
+    public String processAddIncomeForm(@ModelAttribute @Valid Income newIncome, Errors errors, Model model) {
         if (errors.hasErrors()) {
             model.addAttribute("errorMsg","Incorrect input");
             return "incomes/add";
         }
         incomeRepository.save(newIncome);
-        return "redirect:/incomes";
+        return "redirect:";
     }
 }

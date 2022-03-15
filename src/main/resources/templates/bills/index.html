@@ -8,12 +8,19 @@
 <div align="center">
     <h1 th:text="${title}"></h1>
     <h2><a href="/bills/add">+ Bill</a></h2>
-    <p th:unless="${bills} and ${bills.size()}">No Bills Have been Added!</p>
-    <ul>
-        <th:block th:each="bill : ${bills}">
-            <li th:text="${bill}"></li>
-        </th:block>
-    </ul>
+    <p th:unless="${bill} and ${bill.size()}">No Bills Have been Added!</p>
+    <table class="table table-striped">
+        <tr>
+            <th>Name</th>
+            <th>Bill Amount</th>
+            <th>Bill Due Date</th>
+        </tr>
+        <tr th:each="bill : ${bill}">
+            <td th:text="${bill.billName}"></td>
+            <td th:text="${bill.billAmount}"></td>
+            <td th:text="${bill.dueDate}"></td>
+        </tr>
+    </table>
 </div>
 </body>
 </html>

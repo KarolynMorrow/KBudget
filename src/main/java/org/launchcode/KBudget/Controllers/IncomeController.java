@@ -21,8 +21,8 @@ public class IncomeController {
 
     @GetMapping("")
     public String index(Model model){
+        model.addAttribute("income", incomeRepository.findAll());
         model.addAttribute("title", "My Incomes");
-        model.addAttribute("Income", incomeRepository.findAll());
         return "incomes/index";
     }
     //lives at /incomes/add

@@ -50,9 +50,10 @@ public class IncomeController {
     @GetMapping("edit/{incomeId}")
     public String displayEditIncomeForm(Model model, @PathVariable int incomeId) {
         Optional<Income> incomeToEdit = incomeRepository.findById(incomeId);
+        model.addAttribute("title", "Edit Income");
         model.addAttribute("income", incomeToEdit);
         if (incomeToEdit.isPresent()) {
-            Income income = (Income) incomeToEdit.get();
+            Income income = incomeToEdit.get();
         }
         return "incomes/edit";
     }
@@ -63,7 +64,7 @@ public class IncomeController {
         Optional<Income> incomeToEdit = incomeRepository.findById(billId);
         if( incomeToEdit.isPresent()){
             //process the change or delete the income
-
+            Income income = incomeToEdit.get();
 
 
         }

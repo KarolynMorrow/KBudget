@@ -2,12 +2,12 @@
 <html lang="en" xmlns:th="https:www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8"/>
-    <title></title>
+    <title>Edit Income</title>
 </head>
 <body>
 <h1 th:text="${title}"></h1>
 
-<form method="post" th:action="@{income/edit"}>
+<form method="post" th:action="@{incomes/edit"}>
 
     <div class="form-group">
         <label>Name:
@@ -18,7 +18,7 @@
 
     <div class="form-group">
         <label>Pay date:
-            <input type="date" th:field="${income.payDate}" placeholder="yyyy-MM-dd" />
+            <input type="date" th:field="${income.payDate}" placeholder="MM-dd-yyyy" />
         </label>
     </div>
 

@@ -5,21 +5,27 @@
     <title>Bills</title>
 </head>
 <body>
+<h1 th:text="${title}"></h1>
+<h2><a href="/bills/add">+ Bill</a></h2>
 <div align="center">
-    <h1 th:text="${title}"></h1>
-    <h2><a href="/bills/add">+ Bill</a></h2>
-    <p th:unless="${bill} and ${bill.size()}">No Bills Have been Added!</p>
+    <p style="color:red" th:unless="${bill} and ${bill.size()}">No Bills Have been Added!</p>
     <table class="table table-striped">
-        <tr>
-            <th>Name</th>
-            <th>Bill Amount</th>
-            <th>Bill Due Date</th>
-        </tr>
-        <tr th:each="bill : ${bill}">
-            <td th:text="${bill.billName}"></td>
-            <td th:text="${bill.billAmount}"></td>
-            <td th:text="${bill.dueDate}"></td>
-        </tr>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Bill Amount</th>
+                <th>Bill Due Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="bill : ${bill}">
+                <td th:text="${bill.billName}"></td>
+                <td th:text="${bill.billAmount}"></td>
+                <td th:text="${bill.dueDate}"></td>
+               <td><a href="@{/bills/edit/{id}(id=${bill.id})}" class="btn btn-primary">Edit</a></td>
+            </tr>
+        </tbody>
     </table>
 </div>
 </body>

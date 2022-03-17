@@ -10,7 +10,7 @@ import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
+import java.sql.Date;
 
 @Entity
 public class Bill {
@@ -19,7 +19,7 @@ public class Bill {
     @GeneratedValue
     private int id;
 
-    @DateTimeFormat(pattern="yyyy-MM-dd")
+    @DateTimeFormat(pattern="MM-dd-yyyy")
     @Column(name="due_date")
     @FutureOrPresent
     @NotNull

@@ -25,25 +25,18 @@
         <label>Bill name:
         <input type="text" th:field="${bill.billName}" placeholder="name" />
         </label>
-<!--        <span th:errors=“${bill.billName}" class="error"></span>-->
-
-
     </div>
 
     <div class="form-group">
         <label>Due date:
         <input type="date" th:field="${bill.dueDate}" placeholder="MM-dd-yyyy" />
         </label>
-<!--        <span th:errors=“${bill.dueDate}" class="error"></span>-->
-
     </div>
 
     <div class="form-group">
         <label>Bill amount:
         <input type="number" step="any" th:field="${bill.billAmount}" placeholder="Amount" />
         </label>
-<!--        <span th:errors=“${bill.billAmount}" class="error"></span>-->
-
     </div>
 
     <input type="submit" value="Add Bill"/>

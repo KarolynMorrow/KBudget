@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https:www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8"/>
-    <title></title>
-</head>
-<body>
+<head th:replace="fragments :: head"></head>
+
+<body class="container">
+
+<header th:replace="fragments :: site-header"></header>
+
 <h1 th:text="${title}"></h1>
 
-    <form method="post" th:action="@{bills/edit"}>
+    <form method="post" th:action="@{/bills/edit"}>
 
         <div class="form-group">
             <label>Bill name:
@@ -28,29 +29,7 @@
         </div>
         <input type="hidden" th:value="${bill.id}" name="billId" />
 
-
-
-    <th:block th:each="bill : ${bills}">
-        <div class="form-group">
-            <label>
-                <span th:text="${bill.name}"></span>
-                <input type="button" name="billId" th:value="${bill.id}" class="form-control">
-            </label>
-        </div>
-    </th:block>
-
-    <input type="submit" value="Delete" class="btn btn-danger">
-
-    <th:block th:each="bill : ${bills}">
-        <div class="form-group">
-            <label>
-                <span th:text="${bill.name}"></span>
-                <input type="button" name="billId" th:value="${bill.id}" class="form-control">
-            </label>
-        </div>
-    </th:block>
-
-    <input type="submit" value="Update" class="btn btn-danger">
+    <input type="submit" value="Update" class="btn btn-success">
 </form>
 
 </body>

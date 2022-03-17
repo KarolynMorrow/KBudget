@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https:www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Bills</title>
-</head>
-<body>
+<head th:replace="fragments :: head"></head>
+
+<body class="container">
+
+<header th:replace="fragments :: site-header"></header>
 <h1 th:text="${title}"></h1>
-<h2><a href="/bills/add">+ Bill</a></h2>
+
 <div align="center">
     <p style="color:red" th:unless="${bill} and ${bill.size()}">No Bills Have been Added!</p>
     <table class="table table-striped">
@@ -23,7 +23,6 @@
                 <td th:text="${bill.billName}"></td>
                 <td th:text="${bill.billAmount}"></td>
                 <td th:text="${bill.dueDate}"></td>
-               <td><a href="@{/bills/edit/{id}(id=${bill.id})}" class="btn btn-primary">Edit</a></td>
             </tr>
         </tbody>
     </table>

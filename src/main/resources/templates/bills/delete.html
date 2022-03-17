@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body class="container">
+
+<header th:replace="fragments :: site-header"></header>
+
+<form method="post">
+
+    <th:block th:each="bill : ${bills}">
+        <div class="form-group">
+            <label>
+                <span th:text="${bill.name}"></span>
+                <input type="checkbox" name="billId" th:value="${bill.id}" class="form-control">
+            </label>
+        </div>
+    </th:block>
+
+        <input type="submit" value="Delete Selected Bills" class="btn btn-danger">
+</form>
+</body>
+</html>

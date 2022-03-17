@@ -21,25 +21,26 @@ public class BillsController {
     private BillsRepository billsRepository;
 
     @GetMapping("")
-    public String index(Model model){
+    public String displayAllBills(Model model){
         model.addAttribute("title", "Bills");
         model.addAttribute("bill", billsRepository.findAll());
+
         return "bills/index";
     }
-    //lives at /bills/add
-    @GetMapping("add")
+    //lives at /bills/create
+    @GetMapping("create")
     public String displayBillForm(Model model){
         model.addAttribute("title", "Add bill");
         model.addAttribute(new Bill());
-        return "bills/add";
+        return "bills/create";
     }
 
-    //lives at /bills/add
-    @PostMapping("add")
+    //lives at /bills/create
+    @PostMapping("create")
     public String processAddBillForm(@ModelAttribute @Valid Bill newBill, Errors errors, Model model) {
         if (errors.hasErrors()) {
            model.addAttribute("errorMsg","Incorrect input");
-            return "bills/add";
+            return "bills/create";
         }
         billsRepository.save(newBill);
         return "redirect:";
@@ -62,11 +63,24 @@ public class BillsController {
         if( billToEdit.isPresent()){
 
         }
-//        if (billIds != null) {
-//            for (int id : billIds) {
-//                billsRepository.deleteById(id);
-//            }
-//        }
+
+        return "redirect:";
+    }
+    @GetMapping("delete")
+    public String displayDeleteEventForm(Model model) {
+        model.addAttribute("title", "Delete Events");
+        model.addAttribute("events", billsRepository.findAll());
+        return "bills/delete";
+    }
+
+    @PostMapping("delete")
+    public String processDeleteEventsForm(@RequestParam(required = false) int[] billId) {
+
+        if (billId != null) {
+            for (int id : billId) {
+                billsRepository.deleteById(id);
+            }
+        }
 
         return "redirect:";
     }

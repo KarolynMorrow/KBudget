@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https:www.thymeleaf.org/">
-<head>
 <!--    <link th:href=“@{/css/bootstrap.css}” rel=“stylesheet” />-->
 <!--    <link th:href=“@{/css/KBudget.css}” rel=“stylesheet” />-->
 <!--    <script type=“text/javascript” th:src=“@{/js/bootstrap.js}“></script>-->
 
-    <meta charset="UTF-8"/>
-    <title>Add Bill</title>
-</head>
+<head th:replace="fragments :: head"></head>
+
 <body class="container">
+
+<header th:replace="fragments :: site-header"></header>
+
 <h1 th:text="${title}"></h1>
 
 <p class="error" th:text="${errorMsg}"></p>
@@ -19,7 +20,7 @@
 <!--    -->
 <!--</form>-->
 
-<form method="post" action="/bills/add">
+<form method="post" action="/bills/create">
 
     <div class="form-group">
         <label>Bill name:
@@ -39,7 +40,7 @@
         </label>
     </div>
 
-    <input type="submit" value="Add Bill"/>
+    <input type="submit" value="Create Bill"/>
 </form>
 </body>
 </html>

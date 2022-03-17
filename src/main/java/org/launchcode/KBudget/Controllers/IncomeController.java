@@ -11,6 +11,8 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.sql.Date;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("incomes")
@@ -20,14 +22,15 @@ public class IncomeController {
     private IncomeRepository incomeRepository;
 
     @GetMapping("")
-    public String index(Model model){
+    public String index(Model model) {
         model.addAttribute("income", incomeRepository.findAll());
         model.addAttribute("title", "My Incomes");
         return "incomes/index";
     }
+
     //lives at /incomes/add
     @GetMapping("add")
-    public String displayIncomeForm(Model model){
+    public String displayIncomeForm(Model model) {
         model.addAttribute("title", "Add Income");
         model.addAttribute(new Income());
         return "incomes/add";
@@ -37,10 +40,39 @@ public class IncomeController {
     @PostMapping("add")
     public String processAddIncomeForm(@ModelAttribute @Valid Income newIncome, Errors errors, Model model) {
         if (errors.hasErrors()) {
-            model.addAttribute("errorMsg","Incorrect input");
+            model.addAttribute("errorMsg", "Incorrect input");
             return "incomes/add";
         }
         incomeRepository.save(newIncome);
+        return "redirect:";
+    }
+
+    @GetMapping("edit/{incomeId}")
+    public String displayEditIncomeForm(Model model, @PathVariable int incomeId) {
+        Optional<Income> incomeToEdit = incomeRepository.findById(incomeId);
+        model.addAttribute("income", incomeToEdit);
+        if (incomeToEdit.isPresent()) {
+            Income income = (Income) incomeToEdit.get();
+        }
+        return "incomes/edit";
+    }
+
+    @PostMapping("edit")
+    public String processEditIncomeForm(int billId, String name, Date payDate, Float payAmount) {
+
+        Optional<Income> incomeToEdit = incomeRepository.findById(billId);
+        if( incomeToEdit.isPresent()){
+            //process the change or delete the income
+
+
+
+        }
+//        if (billIds != null) {
+//            for (int id : billIds) {
+//                billsRepository.deleteById(id);
+//            }
+//        }
+
         return "redirect:";
     }
 }

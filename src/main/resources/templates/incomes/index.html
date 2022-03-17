@@ -27,6 +27,7 @@
             <td th:text="${income.name}"></td>
             <td th:text="${income.payAmount}"></td>
             <td th:text="${income.payDate}"></td>
+            <td><a href="@{/incomes/edit/{id}(id=${bill.id})}" class="btn btn-primary">Edit</a></td>
         </tr>
     </table>
 </div>

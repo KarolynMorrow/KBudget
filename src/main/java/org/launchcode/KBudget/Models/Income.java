@@ -10,7 +10,7 @@ import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.sql.Date;
+import java.util.Date;
 
 @Entity
 public class Income {
@@ -22,7 +22,7 @@ public class Income {
     @DecimalMin(value="0.05")
     private Float payAmount;
 
-    @NotEmpty
+    @NotEmpty(message = "Enter an Income name")
     @Column(name="name")
     private String name;
 

@@ -38,42 +38,41 @@ public class IncomeController {
 
     //lives at /incomes/add
     @PostMapping("add")
-    public String processAddIncomeForm(@ModelAttribute @Valid Income newIncome, Errors errors, Model model) {
+    public String processAddIncomeForm(@ModelAttribute @Valid Income newIncome, Errors errors) {
         if (errors.hasErrors()) {
-            model.addAttribute("errorMsg", "Incorrect input");
             return "incomes/add";
         }
         incomeRepository.save(newIncome);
         return "redirect:";
     }
 
-    @GetMapping("edit/{incomeId}")
-    public String displayEditIncomeForm(Model model, @PathVariable int incomeId) {
-        Optional<Income> incomeToEdit = incomeRepository.findById(incomeId);
-        model.addAttribute("title", "Edit Income");
-        model.addAttribute("income", incomeToEdit);
-        if (incomeToEdit.isPresent()) {
-            Income income = incomeToEdit.get();
-        }
-        return "incomes/edit";
-    }
+//    @GetMapping("edit/{incomeId}")
+//    public String displayEditIncomeForm(Model model, @PathVariable int incomeId) {
+//        Optional<Income> incomeToEdit = incomeRepository.findById(incomeId);
+//        model.addAttribute("title", "Edit Income");
+//        model.addAttribute("income", incomeToEdit);
+//        if (incomeToEdit.isPresent()) {
+//            Income income = incomeToEdit.get();
+//        }
+//        return "incomes/edit";
+//    }
 
-    @PostMapping("edit")
-    public String processEditIncomeForm(int billId, String name, Date payDate, Float payAmount) {
-
-        Optional<Income> incomeToEdit = incomeRepository.findById(billId);
-        if( incomeToEdit.isPresent()){
-            //process the change or delete the income
-            Income income = incomeToEdit.get();
-
-
-        }
+//    @PostMapping("edit")
+//    public String processEditIncomeForm(int billId, String name, Date payDate, Float payAmount) {
+//
+//        Optional<Income> incomeToEdit = incomeRepository.findById(billId);
+//        if( incomeToEdit.isPresent()){
+//            //process the change or delete the income
+//            Income income = incomeToEdit.get();
+//
+//
+//        }
 //        if (billIds != null) {
 //            for (int id : billIds) {
 //                billsRepository.deleteById(id);
 //            }
 //        }
-
-        return "redirect:";
-    }
+//
+//        return "redirect:";
+//    }
 }

@@ -22,7 +22,7 @@ public class IncomeController {
     private IncomeRepository incomeRepository;
 
     @GetMapping("")
-    public String index(Model model) {
+    public String displayAllIncome(Model model) {
         model.addAttribute("income", incomeRepository.findAll());
         model.addAttribute("title", "My Incomes");
         return "incomes/index";
@@ -75,4 +75,22 @@ public class IncomeController {
 //
 //        return "redirect:";
 //    }
+@GetMapping("delete")
+public String displayDeleteEventForm(Model model) {
+    model.addAttribute("title", "Delete Income");
+    model.addAttribute("income", incomeRepository.findAll());
+    return "incomes/delete";
+}
+
+    @PostMapping("delete")
+    public String processDeleteEventsForm(@RequestParam(required = false) int[] incomeId) {
+
+        if (incomeId != null) {
+            for (int id : incomeId) {
+                incomeRepository.deleteById(id);
+            }
+        }
+
+        return "redirect:";
+    }
 }

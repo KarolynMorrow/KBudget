@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https:www.thymeleaf.org/" xmlns="http://www.w3.org/1999/html">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Add income</title>
-</head>
-<body>
+
+<head th:replace="fragments :: head"></head>
+
+<body class="container">
+
+<header th:replace="fragments :: site-header"></header>
+
 
 
 
 <div class="container body-content" align="center">
     <h1 th:text="${title}"></h1>
     <p th:unless="${income} and ${income.size()}">No Income Added!</p>
-    <h2><a href="/incomes/add">+ Income</a></h2>
 <!--    <ul>-->
 <!--        <th:block th:each="income : ${incomes}">-->
 <!--            <li th:each="income : ${incomes}" th:text="${income}"></li>-->
@@ -27,7 +28,6 @@
             <td th:text="${income.name}"></td>
             <td th:text="${income.payAmount}"></td>
             <td th:text="${income.payDate}"></td>
-            <td><a href="incomes/edit" class="btn btn-primary">Edit</a></td>
         </tr>
     </table>
 </div>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body class="container">
+
+<header th:replace="fragments :: site-header"></header>
+
+<form method="post">
+
+    <th:block th:each="income : ${income}">
+        <div class="form-group">
+            <label>
+                <span th:text="${income.name}"></span>
+                <input type="checkbox" name="incomeId" th:value="${income.id}" class="form-control">
+            </label>
+        </div>
+    </th:block>
+
+    <input type="submit" value="Delete Selected Income" class="btn btn-danger">
+</form>
+</body>
+</html>

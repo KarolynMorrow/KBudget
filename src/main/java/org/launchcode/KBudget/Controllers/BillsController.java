@@ -10,7 +10,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.sql.Date;
+import java.util.Date;
 import java.util.Optional;
 
 @Controller
@@ -26,13 +26,13 @@ public class BillsController {
 
             model.addAttribute("title", "Bills");
             model.addAttribute("bill", billsRepository.findAll());
-        } else {
-            Optional<Bill> billToEdit = billsRepository.findById(billId);
-            if (billToEdit.isPresent()) {
-                Bill bill = billToEdit.get();
-                model.addAttribute("bill", bill.getId());
-                model.addAttribute("title", "View bill: " + bill.getBillName());
-            }
+//        } else {
+//            Optional<Bill> billToEdit = billsRepository.findById(billId);
+//            if (billToEdit.isPresent()) {
+//                Bill bill = billToEdit.get();
+//                model.addAttribute("bill", bill.getId());
+//                model.addAttribute("title", "View bill: " + bill.getBillName());
+//            }
         }
         return "bills/index";
     }
@@ -41,7 +41,7 @@ public class BillsController {
     @GetMapping("create")
     public String displayBillForm(Model model){
         model.addAttribute("title", "Add bill");
-        model.addAttribute("bill", new Bill());
+        model.addAttribute( new Bill());
         return "bills/create";
     }
 

@@ -19,7 +19,7 @@ public class Bill {
     @GeneratedValue
     private int id;
 
-    @DateTimeFormat(pattern="MM-dd-yyyy")
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     @Column(name="due_date")
     //@FutureOrPresent(message = "Cannot be a past date")
     @NotNull

@@ -11,7 +11,7 @@
     <th:block th:each="bill : ${bills}">
         <div class="form-group">
             <label>
-                <span th:text="${bill.name}"></span>
+                <span th:text="${bill.billName}"></span>
                 <input type="checkbox" name="billId" th:value="${bill.id}" class="form-control">
             </label>
         </div>

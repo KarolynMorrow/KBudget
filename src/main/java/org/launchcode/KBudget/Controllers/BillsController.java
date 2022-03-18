@@ -21,17 +21,27 @@ public class BillsController {
     private BillsRepository billsRepository;
 
     @GetMapping("")
-    public String displayAllBills(Model model){
-        model.addAttribute("title", "Bills");
-        model.addAttribute("bill", billsRepository.findAll());
+    public String displayAllBills(@RequestParam(required = false) Integer billId, Model model) {
+        if (billId == null) {
 
+            model.addAttribute("title", "Bills");
+            model.addAttribute("bill", billsRepository.findAll());
+        } else {
+            Optional<Bill> billToEdit = billsRepository.findById(billId);
+            if (billToEdit.isPresent()) {
+                Bill bill = billToEdit.get();
+                model.addAttribute("bill", bill.getId());
+                model.addAttribute("title", "View bill: " + bill.getBillName());
+            }
+        }
         return "bills/index";
     }
+
     //lives at /bills/create
     @GetMapping("create")
     public String displayBillForm(Model model){
         model.addAttribute("title", "Add bill");
-        model.addAttribute(new Bill());
+        model.addAttribute("bill", new Bill());
         return "bills/create";
     }
 
@@ -39,37 +49,40 @@ public class BillsController {
     @PostMapping("create")
     public String processAddBillForm(@ModelAttribute @Valid Bill newBill, Errors errors, Model model) {
         if (errors.hasErrors()) {
-           model.addAttribute("errorMsg","Incorrect input");
+
             return "bills/create";
         }
         billsRepository.save(newBill);
         return "redirect:";
     }
-    @GetMapping("edit/{billId}")
-    public String displayEditBillsForm(Model model, @PathVariable int billId){
-        Optional<Bill> billToEdit = billsRepository.findById(billId);
-        model.addAttribute("bill", billToEdit);
-        if( billToEdit.isPresent()){
-            Bill bill = (Bill) billToEdit.get();
-        }
-        //model.addAttribute("title", "Edit Bill " + billsRepository. + " (id=" + billsRepository.getId() + ")";
-        return "bills/edit";
-    }
-
-    @PostMapping("edit")
-    public String processEditBillsForm(int billId, String billName, Date date, Float billAmount) {
-
-        Optional<Bill> billToEdit = billsRepository.findById(billId);
-        if( billToEdit.isPresent()){
-
-        }
-
-        return "redirect:";
-    }
+//    @GetMapping("edit/{billId}")
+//    public String displayEditBillsForm(@RequestParam(required = false) Integer billId, Model model){
+//        Optional<Bill> billToEdit = billsRepository.findById(billId);
+//        if( billToEdit.isPresent()){
+//            Bill bill = billToEdit.get();
+//            model.addAttribute("bill", bill.getId());
+//            model.addAttribute("title", "Edit bill: " + bill.getBillName());
+//        }
+//        //model.addAttribute("title", "Edit Bill " + billsRepository. + " (id=" + billsRepository.getId() + ")";
+//        return "bills/edit";
+//    }
+//
+//    @PostMapping("edit")
+//    public String processEditBillsForm(int billId, String billName, Date date, Float billAmount) {
+//
+//        Optional<Bill> billToEdit = billsRepository.findById(billId);
+//        if( billToEdit.isPresent()){
+//
+//
+//
+//        }
+//
+//        return "redirect:";
+//    }
     @GetMapping("delete")
     public String displayDeleteEventForm(Model model) {
-        model.addAttribute("title", "Delete Events");
-        model.addAttribute("events", billsRepository.findAll());
+        model.addAttribute("title", "Delete Bills");
+        model.addAttribute("bills", billsRepository.findAll());
         return "bills/delete";
     }
 

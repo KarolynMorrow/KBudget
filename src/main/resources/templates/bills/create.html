@@ -12,7 +12,7 @@
 
 <h1 th:text="${title}"></h1>
 
-<p class="error" th:text="${errorMsg}"></p>
+<!--<p class="error" th:text="${errorMsg}"></p>-->
 <!--<form method="post" action="/bills/add">-->
 <!--    <input type="text" name="billName">-->
 <!--    <input type="submit" value="Add Bill">-->
@@ -26,18 +26,21 @@
         <label>Bill name:
         <input type="text" th:field="${bill.billName}" placeholder="name" />
         </label>
+        <p class="error" th:errors="${bill.billName}"></p>
     </div>
 
     <div class="form-group">
         <label>Due date:
         <input type="date" th:field="${bill.dueDate}" placeholder="MM-dd-yyyy" />
         </label>
+        <p class="error" th:errors="${bill.dueDate}"></p>
     </div>
 
     <div class="form-group">
         <label>Bill amount:
         <input type="number" step="any" th:field="${bill.billAmount}" placeholder="Amount" />
         </label>
+        <p class="error" th:errors="${bill.billAmount}"></p>
     </div>
 
     <input type="submit" value="Create Bill"/>

@@ -47,7 +47,7 @@ public class BillsController {
 
     //lives at /bills/create
     @PostMapping("create")
-    public String processAddBillForm(@ModelAttribute @Valid Bill newBill, Errors errors, Model model) {
+    public String processAddBillForm(@ModelAttribute @Valid Bill newBill, Errors errors) {
         if (errors.hasErrors()) {
 
             return "bills/create";

@@ -10,7 +10,7 @@ import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.sql.Date;
+import java.util.Date;
 
 @Entity
 public class Bill {

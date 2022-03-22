@@ -22,6 +22,8 @@
 
 <form method="post" action="/bills/create">
 
+    <input type="hidden" th:value="${bill.id}" name="billId" />
+
     <div class="form-group">
         <label>Bill name:
         <input type="text" th:field="${bill.billName}" placeholder="name" />
@@ -47,6 +49,8 @@
     </div>
 
     <input type="submit" value="Create Bill"/>
+    <input type="submit" value="Update Bill" class="btn btn-success"/>
+
 </form>
 </body>
 </html>

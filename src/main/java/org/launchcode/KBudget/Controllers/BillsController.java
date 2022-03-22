@@ -24,15 +24,17 @@ public class BillsController {
     public String displayAllBills(@RequestParam(required = false) Integer billId, Model model) {
         if (billId == null) {
 
-            model.addAttribute("title", "Bills");
+            model.addAttribute("title", "My Bills");
             model.addAttribute("bill", billsRepository.findAll());
-//        } else {
-//            Optional<Bill> billToEdit = billsRepository.findById(billId);
-//            if (billToEdit.isPresent()) {
-//                Bill bill = billToEdit.get();
-//                model.addAttribute("bill", bill.getId());
-//                model.addAttribute("title", "View bill: " + bill.getBillName());
-//            }
+        } else {
+            Optional<Bill> billToEdit = billsRepository.findById(billId);
+            if (billToEdit.isPresent()) {
+                Bill bill = billToEdit.get();
+                model.addAttribute("bill", bill.getId());
+                model.addAttribute("title", "View bill: " + bill.getBillName());
+            } else {
+                model.addAttribute("title", "Invalid Bill ID");
+            }
         }
         return "bills/index";
     }
@@ -55,8 +57,9 @@ public class BillsController {
         billsRepository.save(newBill);
         return "redirect:";
     }
+
 //    @GetMapping("edit/{billId}")
-//    public String displayEditBillsForm(@RequestParam(required = false) Integer billId, Model model){
+//    public String displayEditBillsForm(@PathVariable int billId, Model model){
 //        Optional<Bill> billToEdit = billsRepository.findById(billId);
 //        if( billToEdit.isPresent()){
 //            Bill bill = billToEdit.get();
@@ -68,10 +71,11 @@ public class BillsController {
 //    }
 //
 //    @PostMapping("edit")
-//    public String processEditBillsForm(int billId, String billName, Date date, Float billAmount) {
+//    public String processEditBillsForm(@RequestParam int billId, @RequestParam String billName,@RequestParam Date date,@RequestParam Float billAmount) {
 //
 //        Optional<Bill> billToEdit = billsRepository.findById(billId);
 //        if( billToEdit.isPresent()){
+//            billName.replaceAll();
 //
 //
 //

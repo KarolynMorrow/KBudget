@@ -14,14 +14,14 @@
             <tr>
                 <th>Name</th>
                 <th>Bill Amount</th>
-<!--                <th>Bill Due Date</th>-->
+                <th>Bill Due Date</th>
             </tr>
         </thead>
         <tbody>
             <tr th:each="bill : ${bill}">
-                <td><a th:text="${bill.billName}" th:href="@{/bills/(billId=${bill.id})}"></a></td>
+                <td><a th:text="${bill.billName}" th:href="@{/bills/create/(billId=${bill.id})}"></a></td>
                 <td th:text="${bill.billAmount}"></td>
-<!--                <td th:text="${bill.dueDate}"></td>-->
+                <td th:text="${bill.dueDate}"></td>
             </tr>
         </tbody>
     </table>

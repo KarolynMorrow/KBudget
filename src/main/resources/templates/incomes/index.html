@@ -22,12 +22,12 @@
         <tr>
             <th>Name</th>
             <th>Pay Amount</th>
-            <th>Pay Date</th>
+<!--            <th>Pay Date</th>-->
         </tr>
         <tr th:each="income : ${income}">
-            <td th:text="${income.name}"></td>
+            <td><a th:text="${income.name}" th:href="@{/incomes/add/(incomeId=${income.id})}"></a></td>
             <td th:text="${income.payAmount}"></td>
-            <td th:text="${income.payDate}"></td>
+<!--            <td th:text="${income.payDate}"></td>-->
         </tr>
     </table>
 </div>

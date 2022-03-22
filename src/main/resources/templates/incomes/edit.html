@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https:www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Edit Income</title>
+</head>
+<body>
+<h1 th:text="${title}"></h1>
+
+<form method="post" th:action="@{incomes/edit"}>
+
+    <div class="form-group">
+        <label>Name:
+            <input type="text" th:field="${income.name}" placeholder="name" />
+        </label>
+
+    </div>
+
+    <div class="form-group">
+        <label>Pay date:
+            <input type="date" th:field="${income.payDate}" placeholder="MM-dd-yyyy" />
+        </label>
+    </div>
+
+    <div class="form-group">
+        <label>Pay amount:
+            <input type="number" step="any" th:field="${income.payAmount}" placeholder="Amount" />
+        </label>
+    </div>
+
+
+
+    <th:block th:each="income : ${income}">
+        <div class="form-group">
+            <label>
+                <span th:text="${income.name}"></span>
+                <input type="button" name="incomeId" th:value="${income.id}" class="form-control">
+            </label>
+        </div>
+    </th:block>
+
+    <input type="submit" value="Delete" class="btn btn-danger">
+
+    <th:block th:each="income : ${income}">
+        <div class="form-group">
+            <label>
+                <span th:text="${income.name}"></span>
+                <input type="button" name="incomeId" th:value="${income.id}" class="form-control">
+            </label>
+        </div>
+    </th:block>
+
+    <input type="submit" value="Update" class="btn btn-danger">
+</form>
+
+</body>
+</html>

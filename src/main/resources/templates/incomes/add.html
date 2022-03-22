@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https:www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body class="container">
+
+<header th:replace="fragments :: site-header"></header>
+<h1 th:text="${title}"></h1>
+
+
+<form method="post" action="/incomes/add">
+
+    <div class="form-group">
+        <label>Name:
+            <input type="text" th:field="${income.name}" placeholder="name" />
+            <span th:errors="${income.name}" class="error"></span>
+        </label>
+
+    </div>
+
+    <div class="form-group">
+        <label>Pay date:
+            <input type="date" th:field="${income.payDate}" placeholder="yyyy-MM-dd" />
+            <span th:errors="${income.payDate}" class="error"></span>
+        </label>
+    </div>
+
+    <div class="form-group">
+        <label>Pay amount:
+            <input type="number" step="any" th:field="${income.payAmount}" placeholder="Amount" />
+            <span th:errors="${income.payAmount}" class="error"></span>
+        </label>
+    </div>
+
+    <input type="submit" value="Add Income"/>
+</form>
+</body>
+</html>

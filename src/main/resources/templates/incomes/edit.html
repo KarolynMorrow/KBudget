@@ -1,57 +1,38 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https:www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Edit Income</title>
-</head>
-<body>
-<h1 th:text="${title}"></h1>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
 
-<form method="post" th:action="@{incomes/edit"}>
+<body class="container  body-content">
+<h1 th:text="${'Income: ' + income.name}">Default Title</h1>
 
-    <div class="form-group">
-        <label>Name:
-            <input type="text" th:field="${income.name}" placeholder="name" />
-        </label>
+<input type="hidden" th:value="${income.id}" name="incomeId" />
 
-    </div>
+<div class="form-group">
+    <label>Income name:
+        <input type="text" th:field="${income.name}" placeholder="name" />
+    </label>
+</div>
 
-    <div class="form-group">
-        <label>Pay date:
-            <input type="date" th:field="${income.payDate}" placeholder="MM-dd-yyyy" />
-        </label>
-    </div>
+<div class="form-group">
+    <label>Pay date:
+        <input type="date" th:field="${income.payDate}" placeholder="MM-dd-yyyy" />
+    </label>
+</div>
 
-    <div class="form-group">
-        <label>Pay amount:
-            <input type="number" step="any" th:field="${income.payAmount}" placeholder="Amount" />
-        </label>
-    </div>
+<div class="form-group">
+    <label>Pay amount:
+        <input type="number" step="any" th:field="${income.payAmount}" placeholder="Amount" />
+    </label>
+</div>
+<div class="job-listing">
+    <p th:text="${'Original name: ' + income.name}"></p>
+    <p th:text="${'Original Income Amount: ' + income.payAmount}"></p>
+    </p>
+</div>
 
 
+<input type="submit" value="Update Bill" class="btn btn-success">
 
-<!--    <th:block th:each="income : ${income}">-->
-<!--        <div class="form-group">-->
-<!--            <label>-->
-<!--                <span th:text="${income.name}"></span>-->
-<!--                <input type="button" name="incomeId" th:value="${income.id}" class="form-control">-->
-<!--            </label>-->
-<!--        </div>-->
-<!--    </th:block>-->
-
-<!--    <input type="submit" value="Delete" class="btn btn-danger">-->
-
-<!--    <th:block th:each="income : ${income}">-->
-<!--        <div class="form-group">-->
-<!--            <label>-->
-<!--                <span th:text="${income.name}"></span>-->
-<!--                <input type="button" name="incomeId" th:value="${income.id}" class="form-control">-->
-<!--            </label>-->
-<!--        </div>-->
-<!--    </th:block>-->
-
-<!--    <input type="submit" value="Update" class="btn btn-danger">-->
-</form>
 
 </body>
 </html>

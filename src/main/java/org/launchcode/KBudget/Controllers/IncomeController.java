@@ -1,6 +1,7 @@
 package org.launchcode.KBudget.Controllers;
 
 
+import org.launchcode.KBudget.Models.Bill;
 import org.launchcode.KBudget.Models.Income;
 import org.launchcode.KBudget.Models.data.BillsRepository;
 import org.launchcode.KBudget.Models.data.IncomeRepository;
@@ -46,17 +47,18 @@ public class IncomeController {
         return "redirect:";
     }
 
-//    @GetMapping("edit/{incomeId}")
-//    public String displayEditIncomeForm(Model model, @PathVariable int incomeId) {
-//        Optional<Income> incomeToEdit = incomeRepository.findById(incomeId);
-//        model.addAttribute("title", "Edit Income");
-//        model.addAttribute("income", incomeToEdit);
-//        if (incomeToEdit.isPresent()) {
-//            Income income = incomeToEdit.get();
-//        }
-//        return "incomes/edit";
-//    }
+    @GetMapping("edit/{incomeId}")
+    public String displayEditIncomeForm(@PathVariable int incomeId, Model model) {
+        Optional<Income> incomeToEdit = incomeRepository.findById(incomeId);
+        if (incomeToEdit.isPresent()) {
+            Income income = (Income) incomeToEdit.get();
+            model.addAttribute("income", income);
+            return "incomes/edit";
+        } else {
 
+            return "redirect:../";
+        }
+    }
 //    @PostMapping("edit")
 //    public String processEditIncomeForm(int billId, String name, Date payDate, Float payAmount) {
 //

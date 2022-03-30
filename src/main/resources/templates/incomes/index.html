@@ -13,11 +13,7 @@
 <div class="container body-content" align="center">
     <h1 th:text="${title}"></h1>
     <p th:unless="${income} and ${income.size()}">No Income Added!</p>
-<!--    <ul>-->
-<!--        <th:block th:each="income : ${incomes}">-->
-<!--            <li th:each="income : ${incomes}" th:text="${income}"></li>-->
-<!--        </th:block>-->
-<!--    </ul>-->
+
     <table class="table table-striped">
         <tr>
             <th>Name</th>
@@ -25,7 +21,7 @@
 <!--            <th>Pay Date</th>-->
         </tr>
         <tr th:each="income : ${income}">
-            <td><a th:text="${income.name}" th:href="@{/incomes/add/(incomeId=${income.id})}"></a></td>
+            <td><a th:text="${income.name}" th:href="@{'/incomes/edit/' + ${income.id}}"></a></td>
             <td th:text="${income.payAmount}"></td>
 <!--            <td th:text="${income.payDate}"></td>-->
         </tr>

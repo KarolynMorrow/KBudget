@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https:www.thymeleaf.org/">
-<!--    <link th:href=“@{/css/bootstrap.css}” rel=“stylesheet” />-->
-<!--    <link th:href=“@{/css/KBudget.css}” rel=“stylesheet” />-->
-<!--    <script type=“text/javascript” th:src=“@{/js/bootstrap.js}“></script>-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
 
 <head th:replace="fragments :: head"></head>
 
@@ -10,15 +7,6 @@
 
 <header th:replace="fragments :: site-header"></header>
 
-<h1 th:text="${title}"></h1>
-
-<!--<p class="error" th:text="${errorMsg}"></p>-->
-<!--<form method="post" action="/bills/add">-->
-<!--    <input type="text" name="billName">-->
-<!--    <input type="submit" value="Add Bill">-->
-
-<!--    -->
-<!--</form>-->
 
 <form method="post" action="/bills/create">
 
@@ -49,7 +37,7 @@
     </div>
 
     <input type="submit" value="Create Bill"/>
-    <input type="submit" value="Update Bill" class="btn btn-success"/>
+
 
 </form>
 </body>

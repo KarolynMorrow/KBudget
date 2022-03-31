@@ -25,7 +25,7 @@ public class IncomeController {
     @GetMapping("")
     public String displayAllIncome(Model model) {
         model.addAttribute("income", incomeRepository.findAll());
-        model.addAttribute("title", "My Incomes");
+        model.addAttribute("title", "My Income");
         return "incomes/index";
     }
 

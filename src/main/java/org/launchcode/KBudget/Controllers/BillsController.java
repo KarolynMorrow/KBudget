@@ -72,21 +72,20 @@ public class BillsController {
         }
     }
 
-//    @PostMapping("edit")
-//    public String processEditBillsForm(@RequestParam @Valid int billId, @RequestParam @Valid String billName, @RequestParam @Valid Date date, @RequestParam @Valid Float billAmount) {
-//
-//        Optional<Bill> billToEdit = billsRepository.findById(billId);
-//        if( billToEdit.isPresent()){
-//
-//
-//
-//            return "bills/edit";
-//
-//
-//        }
-//
-//        return "bills/edit";
-//    }
+    @PostMapping("edit")
+    public String processEditBillsForm(@RequestParam @Valid int billId, Bill newBill, @RequestParam String billName, @RequestParam Float billAmount) {
+
+        Optional<Bill> billToEdit = billsRepository.findById(billId);
+        if( billToEdit.isPresent()){
+            newBill.setBillName(billName);
+            newBill.setBillAmount(billAmount);
+//            newBill.setDueDate(dueDate);
+
+            return "redirect:../";
+        }
+
+        return "bills/edit";
+    }
 
     @GetMapping("delete")
     public String displayDeleteEventForm(Model model) {

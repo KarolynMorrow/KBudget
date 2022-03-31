@@ -10,7 +10,7 @@ public class MainController {
 
     @GetMapping("")
     public String showBudgetPage(Model model){
-        model.addAttribute("title", "Welcome to KBudget!");
+        model.addAttribute("title", "My Monthly Budget");
         return "index";
     }
 }

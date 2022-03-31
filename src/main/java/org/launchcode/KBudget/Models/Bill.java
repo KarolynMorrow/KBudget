@@ -50,6 +50,9 @@ public class Bill {
 
     }
 
+    public Bill(String billName) {
+    }
+
     public int getId() {
         return id;
     }

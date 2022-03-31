@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https:www.thymeleaf.org/">
+
 <head th:replace="fragments :: head"></head>
 
 <body class="container">
 
 <header th:replace="fragments :: site-header"></header>
-<h1 th:text="${title}"></h1>
 
-<div align="center">
+
+
+<div class="container body-content" align="center">
+    <h1 th:text="${title}"></h1>
     <p style="color:red" th:unless="${bill} and ${bill.size()}">No Bills Have been Added!</p>
     <table class="table table-striped">
         <thead>

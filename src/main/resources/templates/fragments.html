@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
+
 <head th:fragment="head">
+
     <meta charset="UTF-8"/>
     <title>KBudget</title>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+
 
 </head>
 <body>
@@ -14,16 +16,43 @@
 
     <h1 th:text="${title}">My Budget</h1>
 
-    <nav>
-        <ul class="nav">
-            <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="/bills">All Bills</a></li>
-            <li class="nav-item"><a class="nav-link" href="/bills/create">New Bill</a></li>
-            <li class="nav-item"><a class="nav-link" href="/bills/delete">Delete Bill</a></li>
-            <li class="nav-item"><a class="nav-link" href="/incomes">All Income</a></li>
-            <li class="nav-item"><a class="nav-link" href="/incomes/add">New Income</a></li>
-            <li class="nav-item"><a class="nav-link" href="/incomes/delete">Delete Income</a></li>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <span class="navbar-brand mb-0 h1">KBudget</span>
+        <li class="nav-item active">
+            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+        </li>
+
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="/bills" id="billsDropdownMenuLink" role="button" data-toggle="dropdown" aria-expanded="false">
+                    My Bills
+                </a>
+                <div class="dropdown-menu" aria-labelledby="billsDropdownMenuLink">
+                    <a class="dropdown-item" href="/bills">View Bills</a>
+                    <a class="dropdown-item" href="/bills/create">Add New Bill</a>
+                    <a class="dropdown-item" href="/bills/delete">Delete Bill</a>
+                </div>
+            </li>
+
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="/incomes" id="incomeDropdownMenuLink" role="button" data-toggle="dropdown" aria-expanded="false">
+                    My Income
+                </a>
+                <div class="dropdown-menu" aria-labelledby="incomeDropdownMenuLink">
+                    <a class="dropdown-item" href="/incomes">View Income</a>
+                    <a class="dropdown-item" href="/incomes/add">Add New Income</a>
+                    <a class="dropdown-item" href="/incomes/delete">Delete Income</a>
+                </div>
+            </li>
+
             <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+
+
         </ul>
     </nav>
 

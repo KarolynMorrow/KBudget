@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="UTF-8">
-    <title>Welcome to KBudget</title>
-</head>
+
+<head th:replace="fragments :: head"></head>
+
+
 <body>
+<header th:replace="fragments :: site-header"></header>
 <div align="center">
     <h1 th:text="${title}"></h1>
-    <h2><a href="/incomes">View Income</a></h2>
-    <h2><a href="/bills">View Bills</a></h2>
+<!--    <h2><a href="/incomes">View Income</a></h2>-->
+<!--    <h2><a href="/bills">View Bills</a></h2>-->
 </div>
 </body>
 </html>

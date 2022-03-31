@@ -5,6 +5,8 @@
 <body class="container  body-content">
 <h1 th:text="${'Bill: ' + bill.billName}">Default Title</h1>
 
+<form method="post" action="/bills/edit">
+
 <input type="hidden" th:value="${bill.id}" name="billId" />
 
         <div class="form-group">
@@ -25,14 +27,15 @@
             </label>
         </div>
 <div class="job-listing">
-    <p th:text="${'Original name: ' + bill.billName}"></p>
-    <p th:text="${'Original Bill Amount: ' + bill.billAmount}"></p>
+    <p th:text="${'Previous name: ' + bill.billName}"></p>
+    <p th:text="${'Previous Bill Amount: ' + bill.billAmount}"></p>
+    <p th:text="${'Previous Due Date: ' + bill.dueDate}">
     </p>
 </div>
 
 
     <input type="submit" value="Update Bill" class="btn btn-success">
 
-
+</form>
 </body>
 </html>

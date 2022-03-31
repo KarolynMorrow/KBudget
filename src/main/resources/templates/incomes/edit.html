@@ -5,34 +5,37 @@
 <body class="container  body-content">
 <h1 th:text="${'Income: ' + income.name}">Default Title</h1>
 
+
+<form method="post" action="/incomes/edit">
+
 <input type="hidden" th:value="${income.id}" name="incomeId" />
 
-<div class="form-group">
-    <label>Income name:
-        <input type="text" th:field="${income.name}" placeholder="name" />
-    </label>
-</div>
+    <div class="form-group">
+        <label>Income name:
+            <input type="text" th:field="${income.name}" placeholder="name" />
+        </label>
+    </div>
 
-<div class="form-group">
-    <label>Pay date:
-        <input type="date" th:field="${income.payDate}" placeholder="MM-dd-yyyy" />
-    </label>
-</div>
+    <div class="form-group">
+        <label>Pay date:
+            <input type="date" th:field="${income.payDate}" placeholder="MM-dd-yyyy" />
+        </label>
+    </div>
 
-<div class="form-group">
-    <label>Pay amount:
-        <input type="number" step="any" th:field="${income.payAmount}" placeholder="Amount" />
-    </label>
-</div>
-<div class="job-listing">
-    <p th:text="${'Original name: ' + income.name}"></p>
-    <p th:text="${'Original Income Amount: ' + income.payAmount}"></p>
-    </p>
-</div>
+    <div class="form-group">
+        <label>Pay amount:
+            <input type="number" step="any" th:field="${income.payAmount}" placeholder="Amount" />
+        </label>
+    </div>
+    <div class="job-listing">
+        <p th:text="${'Original name: ' + income.name}"></p>
+        <p th:text="${'Original Income Amount: ' + income.payAmount}"></p>
+        </p>
+    </div>
 
 
 <input type="submit" value="Update Bill" class="btn btn-success">
 
-
+</form>
 </body>
 </html>

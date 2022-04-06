@@ -81,7 +81,7 @@ public class BillsController {
             newBill.setBillAmount(billAmount);
 //            newBill.setDueDate(dueDate);
 
-            return "redirect:../";
+            return "redirect:./";
         }
 
         return "bills/edit";

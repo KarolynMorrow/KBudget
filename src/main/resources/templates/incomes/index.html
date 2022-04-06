@@ -11,19 +11,16 @@
 
 
 <div class="container body-content" align="center">
-<!--    <h1 th:text="${title}"></h1>-->
-    <p th:unless="${income} and ${income.size()}">No Income Added!</p>
+    <p style="color:red" th:unless="${income} and ${income.size()}">No Income Added!</p>
 
     <table class="table table-striped">
         <tr>
             <th>Name</th>
             <th>Pay Amount</th>
-<!--            <th>Pay Date</th>-->
         </tr>
         <tr th:each="income : ${income}">
             <td><a th:text="${income.name}" th:href="@{'/incomes/edit/' + ${income.id}}"></a></td>
             <td th:text="${income.payAmount}"></td>
-<!--            <td th:text="${income.payDate}"></td>-->
         </tr>
     </table>
 </div>

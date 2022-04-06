@@ -24,7 +24,7 @@
             <tr th:each="bill : ${bill}">
                 <td><a th:text="${bill.billName}" th:href="@{'/bills/edit/' + ${bill.id}}"></a></td>
                 <td th:text="${bill.billAmount}"></td>
-<!--                <td th:text="${bill.dueDate}"></td>-->
+
             </tr>
         </tbody>
     </table>

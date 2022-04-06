@@ -12,7 +12,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.sql.Date;
+import java.util.Date;
 import java.util.Optional;
 
 @Controller
@@ -59,24 +59,33 @@ public class IncomeController {
             return "redirect:../";
         }
     }
-//    @PostMapping("edit")
-//    public String processEditIncomeForm(int billId, String name, Date payDate, Float payAmount) {
-//
-//        Optional<Income> incomeToEdit = incomeRepository.findById(billId);
-//        if( incomeToEdit.isPresent()){
-//            //process the change or delete the income
-//            Income income = incomeToEdit.get();
-//
-//
-//        }
-//        if (billIds != null) {
-//            for (int id : billIds) {
-//                billsRepository.deleteById(id);
-//            }
-//        }
-//
-//        return "redirect:";
-//    }
+    @PostMapping("edit")
+    public String processEditIncomeForm(@RequestParam int incomeId, Income income, @RequestParam String name, @RequestParam Float payAmount) {
+
+        Optional<Income> incomeToEdit = incomeRepository.findById(incomeId);
+        if( incomeToEdit.isPresent()) {
+            income.setName(name);
+
+            }
+
+        if( incomeToEdit.isPresent()) {
+            income.setPayAmount(payAmount);
+
+            incomeRepository.save(income);
+            return "redirect:./";
+        }
+        return "incomes/edit";
+
+    }
+
+
+//    (Objects.nonNull(department.getDepartmentName())
+//            && !"".equalsIgnoreCase(
+//            department.getDepartmentName())) {
+//        depDB.setDepartmentName(
+//                department.getDepartmentName());
+
+
 @GetMapping("delete")
 public String displayDeleteEventForm(Model model) {
     model.addAttribute("title", "Delete Income");

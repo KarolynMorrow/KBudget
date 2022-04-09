@@ -2,6 +2,7 @@ package org.launchcode.KBudget.Controllers;
 
 
 import org.launchcode.KBudget.Models.Bill;
+import org.launchcode.KBudget.Models.Income;
 import org.launchcode.KBudget.Models.data.BillsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,7 +11,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Date;
+import java.sql.Date;
 import java.util.Optional;
 
 @Controller
@@ -73,18 +74,15 @@ public class BillsController {
     }
 
     @PostMapping("edit")
-    public String processEditBillsForm(@RequestParam @Valid int billId, Bill newBill, @RequestParam String billName, @RequestParam Float billAmount) {
+    public String processEditBillsForm(@RequestParam int billId, Bill bill, @RequestParam String billName, @RequestParam Float billAmount, @RequestParam Date dueDate) {
 
-        Optional<Bill> billToEdit = billsRepository.findById(billId);
-        if( billToEdit.isPresent()){
-            newBill.setBillName(billName);
-            newBill.setBillAmount(billAmount);
-//            newBill.setDueDate(dueDate);
+        Bill billToEdit = billsRepository.findById(billId).get();
+        billToEdit.setBillName(billName);
+        billToEdit.setBillAmount(billAmount);
+        billToEdit.setDueDate(dueDate);
 
-            return "redirect:./";
-        }
-
-        return "bills/edit";
+        billsRepository.save(billToEdit);
+        return "redirect:./";
     }
 
     @GetMapping("delete")

@@ -21,7 +21,6 @@ public class Bill {
 
     @DateTimeFormat(pattern="yyyy-MM-dd")
     @Column(name="due_date")
-    //@FutureOrPresent(message = "Cannot be a past date")
     @NotNull
     private Date dueDate;
 

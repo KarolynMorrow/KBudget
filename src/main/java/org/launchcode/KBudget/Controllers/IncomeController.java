@@ -1,9 +1,7 @@
 package org.launchcode.KBudget.Controllers;
 
 
-import org.launchcode.KBudget.Models.Bill;
 import org.launchcode.KBudget.Models.Income;
-import org.launchcode.KBudget.Models.data.BillsRepository;
 import org.launchcode.KBudget.Models.data.IncomeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,8 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
-import java.util.Date;
+import java.sql.Date;
 import java.util.Optional;
 
 @Controller
@@ -59,31 +58,29 @@ public class IncomeController {
             return "redirect:../";
         }
     }
+
+
     @PostMapping("edit")
-    public String processEditIncomeForm(@RequestParam int incomeId, Income income, @RequestParam String name, @RequestParam Float payAmount) {
+    public String processEditIncomeForm(@RequestParam int incomeId, Income income, @RequestParam String name, @RequestParam Float payAmount, @RequestParam Date payDate) {
 
-        Optional<Income> incomeToEdit = incomeRepository.findById(incomeId);
-        if( incomeToEdit.isPresent()) {
-            income.setName(name);
+        Income incomeToEdit= incomeRepository.findById(incomeId).get();
+        incomeToEdit.setName(name);
+        incomeToEdit.setPayAmount(payAmount);
+        incomeToEdit.setPayDate(payDate);
 
-            }
+        incomeRepository.save(incomeToEdit);
+        return "redirect:./";
 
-        if( incomeToEdit.isPresent()) {
-            income.setPayAmount(payAmount);
 
-            incomeRepository.save(income);
-            return "redirect:./";
-        }
-        return "incomes/edit";
+//         return incomeRepository.findById(incomeId).map(target -> {
+//            target.setName(income.getName());
+//            target.setPayAmount(income.getPayAmount());
+////            target.setPayDate(income.getPayDate());
+//            return target;
+//        });
+
 
     }
-
-
-//    (Objects.nonNull(department.getDepartmentName())
-//            && !"".equalsIgnoreCase(
-//            department.getDepartmentName())) {
-//        depDB.setDepartmentName(
-//                department.getDepartmentName());
 
 
 @GetMapping("delete")
